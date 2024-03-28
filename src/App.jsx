@@ -1,35 +1,43 @@
-import { useState } from 'react'
-
-import './App.css'
-import PositionTeam from './components/PositionTeam'
+import { useState, useEffect } from 'react';
+import './App.css';
+import PositionTeam from './components/PositionTeam';
+//import team from './db/team';
 
 function App() {
-  const [textRunLine, settextRunLine] = useState("Всем привет! Всем привет! Всем привет! Всем привет! Всем привет!")
- 
 
-  const team = [
-    {id: 1, name: "EG", point: 64},
-    {id: 2, name: "EG", point: 73},
-    {id: 3, name: "EG", point: 1},
-    {id: 4, name: "EG", point: 2},
-    {id: 5, name: "EG", point: 20},
-    {id: 6, name: "EG", point: 23},
-    {id: 7, name: "EG", point: 36},
-    {id: 8, name: "EG", point: 89},
-    {id: 9, name: "EG", point: 34},
-    {id: 10, name: "EG", point: 23},
-    {id: 11, name: "EG", point: 22},
-    {id: 12, name: "NAVI", point: 224},
-    {id: 13, name: "Team Spirit", point: 232},
-    ]
-    const leader = team.sort((a, b) => a.point - b.point).reverse().slice(0, 3)
-    console.log(leader);
-    
-    
-    console.log(leader);
+    // const [leader, setLeader] = useState([]);
+
+    // useEffect(() => {
+    //     team.findAll()
+    //       .then((data) => setLeader(data))
+    //       .catch((error) => console.error('Ошибка при получении данных:', error));
+    //   }, []);
+
+
+    const [textRunLine, settextRunLine] = useState("Всем привет! Всем привет! Всем привет! Всем привет! Всем привет!")
+    const team = [
+        {id: 1, name: "EG", point: 64},
+        {id: 2, name: "EG", point: 73},
+        {id: 3, name: "EG", point: 1},
+        {id: 4, name: "EG", point: 2},
+        {id: 5, name: "EG", point: 20},
+        {id: 6, name: "EG", point: 23},
+        {id: 7, name: "EG", point: 36},
+        {id: 8, name: "EG", point: 89},
+        {id: 9, name: "EG", point: 34},
+        {id: 10, name: "EG", point: 300},
+        {id: 11, name: "EG", point: 22},
+        {id: 12, name: "NAVI", point: 350},
+        {id: 13, name: "Team Spirit", point: 232},
+        ]
+        const leader = team.sort((a, b) => a.point - b.point).reverse().slice(0, 3)
+        console.log(leader);
+        
+        
+        //console.log(leader);
     
 
-  return (
+    return (
     <> 
         <div className="runLine">
             <marquee id="textRunLine" scrollamount="15">

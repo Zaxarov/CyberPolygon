@@ -23,9 +23,6 @@ function PositionTeam({id, pozition, name, point}) {
             <div className='point'>
                     {point} баллов
             </div>
-                
-
-
         </div>
     )
 
