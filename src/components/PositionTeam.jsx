@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './styles/PositionTeam.css'
+import './styles/PositionTeam.css';
 
 function PositionTeam({id, pozition, name, point}) {
 
@@ -27,4 +27,4 @@ function PositionTeam({id, pozition, name, point}) {
     )
 
 }
-export default PositionTeam
+export default PositionTeam;
