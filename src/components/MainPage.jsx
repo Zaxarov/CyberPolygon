@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import './styles/MainPage.css';
 import PositionTeam from './PositionTeam';
-import team from '../data/team.json';
 import runLine from '../data/runLine.json'
 
 function MainPage() {
-    const [data, setData] = useState(team);
+
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('teamData')));
     const [textRunLine, settextRunLine] = useState(runLine)
-    const leader = team.sort((a, b) => a.point - b.point).reverse().slice(0, 3)   
-    console.log(data);
+    const leader = data && data.length > 0 ? data.sort((a, b) => a.point - b.point).reverse().slice(0, 3) : [];
+    
+    useEffect( ()=> {
+        setInterval(() => {
+            setData(JSON.parse(localStorage.getItem('teamData')))
+        }, 500)
+
+    },[]) 
 
     return (
     <> 
@@ -34,10 +40,10 @@ function MainPage() {
                                     <img src="/images/Команда 1.webp" className="leadersInsidelogo"/>
                                 </div>
                                 <div className="leadersInsideName">
-                                    {leader[2].name}
+                                    {leader && leader.length > 2 && leader[2].name}
                                 </div>
                                 <div className="leadersInsidePoint">
-                                    {leader[2].point} баллов
+                                    {leader && leader.length > 2 && `${leader[2].point} баллов`}
                                 </div>
                             </div>
                         </div>
@@ -52,10 +58,10 @@ function MainPage() {
                                     <img src="/images/Команда 1.webp" className="leadersInsidelogo"/>
                                 </div>
                                 <div className="leadersInsideName1">
-                                    {leader[0].name}
+                                    {leader && leader.length > 2 && leader[0].name}
                                 </div>
                                 <div className="leadersInsidePoint1">
-                                    {leader[0].point} баллов
+                                    {leader && leader.length > 2 && `${leader[0].point} баллов`}
                                 </div>
                             </div>
                         </div>
@@ -70,10 +76,10 @@ function MainPage() {
                                     <img src="/images/Команда 1.webp" className="leadersInsidelogo"/>
                                 </div>
                                 <div className="leadersInsideName">
-                                    {leader[1].name}
+                                    {leader && leader.length > 2 && leader[1].name}
                                 </div>
                                 <div className="leadersInsidePoint">
-                                    {leader[1].point} баллов
+                                    {leader && leader.length > 2 && `${leader[1].point} баллов`}
                                 </div>
                             </div>
                                 
@@ -85,7 +91,9 @@ function MainPage() {
             <img className="nstuLogo" src="/images/нгту лого.png" />
         </div>
         <div className='containerTeam'>
-            {team.sort((a, b) => a.point - b.point).reverse().slice(3, team.length).map((e, id) => (<PositionTeam id={e.id} pozition={id + 4} name={e.name} point={e.point}/>))}
+            {data && data.length > 0 && data.sort((a, b) => a.point - b.point).reverse().slice(3, data.length).map((e, id) => (
+            <PositionTeam id={e.id} pozition={id + 4} name={e.name} point={e.point} />
+            ))}
         </div>
     </>
   )
