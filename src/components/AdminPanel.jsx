@@ -10,11 +10,14 @@ function AdminPanel() {
   const [textRunLine, setTextRunLine] = useState(
     JSON.parse(localStorage.getItem("runLine"))
   );
-  const [ChangetextRunLine, setChangetextRunLine] = useState(textRunLine);
+  const [ChangetextRunLine, setChangetextRunLine] = useState(
+    textRunLine[0].text
+  );
   const [inputValue, setInputValue] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [scrollAmount, setScrollAmount] = useState("10");
+  const [scrollAmount, setScrollAmount] = useState(textRunLine[0].speed);
 
+  console.log(ChangetextRunLine);
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -72,6 +75,7 @@ function AdminPanel() {
 
   const handleChangeRunLine = () => {
     setRunLine(true);
+    console.log(ChangetextRunLine);
   };
 
   const handleSearch = (event) => {
@@ -142,11 +146,15 @@ function AdminPanel() {
           <div className="confirmationRunDialog">
             <div className="runLineTextAdminConteiner">
               <marquee id="runLineTextAdmin" scrollamount={scrollAmount}>
-                {ChangetextRunLine ? ChangetextRunLine : "Предпросмотр"}
+                {ChangetextRunLine}
               </marquee>
             </div>
             <p className="sped">скорость</p>
-            <select className="Speed" onChange={handleSpeedChange}>
+            <select
+              className="Speed"
+              value={scrollAmount}
+              onChange={handleSpeedChange}
+            >
               <option value="10">1x</option>
               <option value="20">2x</option>
               <option value="30">3x</option>

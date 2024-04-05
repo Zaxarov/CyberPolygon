@@ -69,12 +69,10 @@ function TeamAdmin({
     setAvatarTeam(true);
     setAvatar(false);
     const file = event.target.files[0];
-    setImage(URL.createObjectURL(file));
+    setImage(file);
   };
 
-  const handleAvatarConfirm = () => {
-    ChangeAvatar(id, image);
-  };
+  const handleAvatarConfirm = () => {};
 
   return (
     <div className="ContainerTeam">

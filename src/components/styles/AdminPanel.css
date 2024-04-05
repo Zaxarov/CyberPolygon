@@ -147,9 +147,6 @@ input[type="number"]::-webkit-outer-spin-button {
   border: none;
 }
 
-.ContainerTeam {
-}
-
 .Team {
   justify-content: space-around;
   display: flex;
