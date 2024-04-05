@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/AdminPanel.css";
 import AvatarEditor from "react-avatar-editor";
+import axios from "axios";
 
 function TeamAdmin({
   id,
@@ -10,6 +11,7 @@ function TeamAdmin({
   ChangePoints,
   DeleteTeam,
   ChangeAvatar,
+  images,
 }) {
   const [inputValue, setInputValue] = useState("");
   const [showDeleteTeam, setShowDeleteTeam] = useState(false);
@@ -17,7 +19,7 @@ function TeamAdmin({
   const [scale, setScale] = useState(1);
   const [avatar, setAvatar] = useState(false);
   const [avatarTeam, setAvatarTeam] = useState(false);
-
+  const editorRef = useRef(null); // Создаем ссылку на компонент AvatarEditor
   const handleDeleteTeam = () => {
     setShowDeleteTeam(true);
   };
@@ -72,13 +74,29 @@ function TeamAdmin({
     setImage(file);
   };
 
-  const handleAvatarConfirm = () => {};
+  const handleAvatarConfirm = async () => {
+    const canvas = editorRef.current.getImageScaledToCanvas(); // Получите обрезанное изображение
+    try {
+      const data = new FormData();
+      canvas.toBlob((blob) => {
+        data.append("file", blob, "avatar.jpg"); // Отправьте обрезанное изображение
+        axios.post("http://localhost:3001/upload", data).then((response) => {
+          console.log(response.data.filePath);
+          ChangeAvatar(id, response.data.filePath);
+        });
+      }, "image/jpeg");
+    } catch (error) {
+      console.log(error);
+    }
+    setAvatarTeam(false);
+    setAvatar(false);
+  };
 
   return (
     <div className="ContainerTeam">
       <div className="Team">
         <p className="NumberTeam">{pozition}</p>
-        <img src="/images/Команда 1.webp" className="TeamLogo" />
+        <img src={`Server/${images}`} className="TeamLogo" />
         <div className="NameTeam">{name}</div>
         <div className="TeamPoint">{point}</div>
         <div className="plus">+</div>
@@ -158,11 +176,12 @@ function TeamAdmin({
             <div className="confirmationDialogAvatar">
               <p>Выберите область для показа миниатюры фотографии</p>
               <AvatarEditor
+                ref={editorRef}
                 className="AvatarEditor"
                 image={image}
                 width={250}
                 height={250}
-                border={50}
+                border={0}
                 borderRadius={125}
                 scale={scale}
               />

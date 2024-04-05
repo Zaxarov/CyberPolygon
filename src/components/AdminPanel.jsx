@@ -190,6 +190,7 @@ function AdminPanel() {
               ChangePoints={ChangePoints}
               DeleteTeam={DeleteTeam}
               ChangeAvatar={ChangeAvatar}
+              images={e.image}
             />
           ))}
     </div>

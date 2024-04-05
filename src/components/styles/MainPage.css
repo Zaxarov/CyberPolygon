@@ -137,6 +137,11 @@ html {
   align-items: center;
   justify-content: space-around;
 }
+.leadersInsidelogoContainer img {
+  width: 79%; /* Заполнить всю доступную ширину контейнера */
+  height: auto; /* Автоматически подстроить высоту */
+  border-radius: 50%; /* Сделать изображение круглым */
+}
 
 .leadersInsideName {
   font-family: "Montserrat Alternates", sans-serif;

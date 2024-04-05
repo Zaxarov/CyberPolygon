@@ -53,7 +53,7 @@ function MainPage() {
                   >
                     <div className="leadersInsidelogoContainer">
                       <img
-                        src="/images/Команда 1.webp"
+                        src={`Server/${leader[2].image}`}
                         className="leadersInsidelogo"
                       />
                     </div>
@@ -80,7 +80,7 @@ function MainPage() {
                   >
                     <div className="leadersInsidelogoContainer">
                       <img
-                        src="/images/Команда 1.webp"
+                        src={`Server/${leader[0].image}`}
                         className="leadersInsidelogo"
                       />
                     </div>
@@ -107,7 +107,7 @@ function MainPage() {
                   >
                     <div className="leadersInsidelogoContainer">
                       <img
-                        src="/images/Команда 1.webp"
+                        src={`Server/${leader[1].image}`}
                         className="leadersInsidelogo"
                       />
                     </div>
