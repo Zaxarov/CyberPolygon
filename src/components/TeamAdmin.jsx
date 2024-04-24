@@ -96,7 +96,7 @@ function TeamAdmin({
     <div className="ContainerTeam">
       <div className="Team">
         <p className="NumberTeam">{pozition}</p>
-        <img src={`Server/${images}`} className="TeamLogo" />
+        <img src={images ? `Server/${images}` : "/images/avatar.jpg"} className="TeamLogo" />
         <div className="NameTeam">{name}</div>
         <div className="TeamPoint">{point}</div>
         <div className="plus">+</div>

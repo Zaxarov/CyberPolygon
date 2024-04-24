@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './styles/PositionTeam.css';
 
-function PositionTeam({id, pozition, name, point}) {
+function PositionTeam({id, pozition, name, point, img}) {
 
     
     
@@ -14,7 +14,7 @@ function PositionTeam({id, pozition, name, point}) {
                     {pozition}
                 </div>
                 <div className='logoContainer'>
-                    <img src="/../images/Команда 1.webp" className='logoTeam'/>
+                    <img src={img ? `Server/${img}` : "/images/avatar.jpg"} className='logoTeam'/>
                 </div>
                 <div className='name'>
                     {name}

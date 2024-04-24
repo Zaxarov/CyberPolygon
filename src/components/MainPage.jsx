@@ -53,7 +53,7 @@ function MainPage() {
                   >
                     <div className="leadersInsidelogoContainer">
                       <img
-                        src={`Server/${leader[2].image}`}
+                        src={leader[2].image ? `Server/${leader[2].image}` : "/images/avatar.jpg"} 
                         className="leadersInsidelogo"
                       />
                     </div>
@@ -80,7 +80,7 @@ function MainPage() {
                   >
                     <div className="leadersInsidelogoContainer">
                       <img
-                        src={`Server/${leader[0].image}`}
+                        src={leader[0].image ? `Server/${leader[0].image}` : "/images/avatar.jpg"} 
                         className="leadersInsidelogo"
                       />
                     </div>
@@ -107,7 +107,7 @@ function MainPage() {
                   >
                     <div className="leadersInsidelogoContainer">
                       <img
-                        src={`Server/${leader[1].image}`}
+                        src={leader[1].image ? `Server/${leader[1].image}` : "/images/avatar.jpg"} 
                         className="leadersInsidelogo"
                       />
                     </div>
@@ -136,6 +136,7 @@ function MainPage() {
                 pozition={id + 4}
                 name={e.name}
                 point={e.point}
+                img={e.image}
               />
             ))}
       </div>
