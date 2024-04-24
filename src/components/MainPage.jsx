@@ -124,21 +124,36 @@ function MainPage() {
         <img className="nstuLogo" src="/images/нгту лого.png" />
       </div>
       <div className="containerTeam">
-        {data &&
-          data.length > 0 &&
-          data
-            .sort((a, b) => a.point - b.point)
-            .reverse()
-            .slice(3, data.length)
-            .map((e, id) => (
-              <PositionTeam
-                id={e.id}
-                pozition={id + 4}
-                name={e.name}
-                point={e.point}
-                img={e.image}
-              />
-            ))}
+      {data && data.length > 0 && (() => {
+        // Фильтруем команды, которые имеют очки больше 0
+        const teamsWithPoints = data.filter(team => team.point > 0);
+        
+        // Если есть хотя бы одна команда с очками, возвращаем нужное количество команд
+        if (teamsWithPoints.length > 0) {
+            // Ограничиваем slice количеством команд с очками, если их больше 3
+            const numTeamsToShow = Math.min(teamsWithPoints.length, 3);
+            const slicedTeams = data.sort((a, b) => a.point - b.point).reverse().slice(numTeamsToShow);
+            return slicedTeams.map((team, id) => (
+                <PositionTeam
+                    id={team.id}
+                    pozition={teamsWithPoints.length === 0 ? id + 1 : id + numTeamsToShow + 1}
+                    name={team.name}
+                    point={team.point}
+                    img={team.image}
+                />
+            ));
+        } else {
+            return data.map((team, id) => (
+                <PositionTeam
+                    id={team.id}
+                    pozition={teamsWithPoints.length === 0 ? id + 1 : id + numTeamsToShow}
+                    name={team.name}
+                    point={team.point}
+                    img={team.image}
+                />
+            ));
+        }
+    })()}
       </div>
     </>
   );

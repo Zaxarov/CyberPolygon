@@ -48,8 +48,9 @@ function AdminPanel() {
 
   const handleAddTeam = () => {
     const teamData = JSON.parse(localStorage.getItem("teamData")) || [];
+    const maxId = Math.max(...teamData.map((team) => team.id));
     const newTeam = {
-      id: teamData.length + 1,
+      id: maxId + 1,
       name: inputValue,
       point: 0,
       image: "",
